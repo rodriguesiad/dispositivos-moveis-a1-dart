@@ -11,8 +11,12 @@ class FormularioPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(produtoExistente == null ? "Adicionar Compras" : "Editar Produto"),
-        backgroundColor: Colors.blue,
+        title: Text(
+          produtoExistente == null ? "Adicionar Compras" : "Editar Produto",
+          style: TextStyle(fontWeight: FontWeight.w500, color: Colors.white),
+        ),
+        centerTitle: true,
+        backgroundColor: Colors.deepPurple,
       ),
       body: FormCompras(produtoInicial: produtoExistente),
     );

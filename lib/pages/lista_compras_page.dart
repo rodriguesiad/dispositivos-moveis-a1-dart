@@ -39,8 +39,12 @@ class _ListaComprasPageState extends State<ListaComprasPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Lista de Compras"),
-        backgroundColor: Colors.blue,
+        backgroundColor: Colors.deepPurple,
+        centerTitle: true,
+        title: const Text(
+          "Lista de Compras",
+          style: TextStyle(fontWeight: FontWeight.w500, color: Colors.white),
+        ),
       ),
       body:
           listaProdutos.isEmpty
