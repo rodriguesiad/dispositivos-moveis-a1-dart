@@ -51,6 +51,11 @@ class _ListaComprasPageState extends State<ListaComprasPage> {
             });
           }
         },
+        onExcluir: (index) {
+          setState(() {
+            listaProdutos.removeAt(index);
+          });
+        },
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: _adicionarProduto,
