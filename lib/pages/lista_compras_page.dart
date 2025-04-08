@@ -33,7 +33,25 @@ class _ListaComprasPageState extends State<ListaComprasPage> {
         title: const Text("Lista de Compras"),
         backgroundColor: Colors.blue,
       ),
-      body: ListaCompras(listaProdutos),
+      body: ListaCompras(
+        produtos: listaProdutos,
+        onEditar: (index) async {
+          final Produto? produtoEditado = await Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder:
+                  (context) =>
+                      FormularioPage(produtoExistente: listaProdutos[index]),
+            ),
+          );
+
+          if (produtoEditado != null) {
+            setState(() {
+              listaProdutos[index] = produtoEditado;
+            });
+          }
+        },
+      ),
       floatingActionButton: FloatingActionButton(
         onPressed: _adicionarProduto,
         child: const Icon(Icons.add),

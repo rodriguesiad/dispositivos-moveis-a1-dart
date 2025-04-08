@@ -2,15 +2,26 @@ import 'package:flutter/material.dart';
 import '../models/produto.dart';
 
 class FormCompras extends StatefulWidget {
-  const FormCompras({super.key});
+  final Produto? produtoInicial;
+
+  const FormCompras({super.key, this.produtoInicial});
 
   @override
   State<FormCompras> createState() => _FormComprasState();
 }
 
 class _FormComprasState extends State<FormCompras> {
-  final TextEditingController campoNome = TextEditingController();
-  final TextEditingController campoValor = TextEditingController();
+  late TextEditingController campoNome;
+  late TextEditingController campoValor;
+
+  @override
+  void initState() {
+    super.initState();
+    campoNome = TextEditingController(
+        text: widget.produtoInicial != null ? widget.produtoInicial!.nome : '');
+    campoValor = TextEditingController(
+        text: widget.produtoInicial != null ? widget.produtoInicial!.valor.toString() : '');
+  }
 
   @override
   void dispose() {
@@ -58,7 +69,10 @@ class _FormComprasState extends State<FormCompras> {
             keyboardType: TextInputType.numberWithOptions(decimal: true),
           ),
         ),
-        ElevatedButton(onPressed: _salvarProduto, child: const Text('SALVAR')),
+        ElevatedButton(
+          onPressed: _salvarProduto,
+          child: const Text('SALVAR'),
+        ),
       ],
     );
   }
