@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
-import '../models/produto.dart';
-import 'item_lista_compras.dart';
+import '../models/medicamento.dart';
+import 'item_lista_medicamentos.dart';
 
 class ListaCompras extends StatelessWidget {
-  final List<Produto> produtos;
+  final List<Medicamento> medicamentos;
   final void Function(int index) onEditar;
   final void Function(int index) onExcluir;
 
   const ListaCompras({
     super.key,
-    required this.produtos,
+    required this.medicamentos,
     required this.onEditar,
     required this.onExcluir,
   });
@@ -17,10 +17,10 @@ class ListaCompras extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
-      itemCount: produtos.length,
+      itemCount: medicamentos.length,
       itemBuilder: (BuildContext context, int index) {
-        return ItemListCompras(
-          produto: produtos[index],
+        return ItemListMedicamentos(
+          medicamento: medicamentos[index],
           onEditar: () => onEditar(index),
           onExcluir: () => onExcluir(index),
         );

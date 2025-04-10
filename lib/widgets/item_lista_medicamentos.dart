@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
-import '../models/produto.dart';
+import '../models/medicamento.dart';
 
-class ItemListCompras extends StatelessWidget {
-  final Produto produto;
+class ItemListMedicamentos extends StatelessWidget {
+  final Medicamento medicamento;
   final VoidCallback onEditar;
   final VoidCallback onExcluir;
 
-  const ItemListCompras({
+  const ItemListMedicamentos({
     super.key,
-    required this.produto,
+    required this.medicamento,
     required this.onEditar,
     required this.onExcluir,
   });
@@ -18,15 +18,14 @@ class ItemListCompras extends StatelessWidget {
     return Card(
       child: ListTile(
         leading: const Icon(Icons.shopping_cart),
-        title: Text(produto.nome),
-        subtitle: Text('R\$ ${produto.valor.toStringAsFixed(2)}'),
+        title: Text(medicamento.nome),
+        subtitle: Text(
+          'Horário: ${medicamento.horario} - Quantidade ${medicamento.quantidade.toStringAsFixed(2)}',
+        ),
         trailing: Row(
           mainAxisSize: MainAxisSize.min,
           children: [
-            IconButton(
-              icon: const Icon(Icons.edit),
-              onPressed: onEditar,
-            ),
+            IconButton(icon: const Icon(Icons.edit), onPressed: onEditar),
             IconButton(
               icon: const Icon(Icons.delete, color: Colors.red),
               onPressed: onExcluir,

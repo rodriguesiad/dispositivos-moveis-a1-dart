@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import '../models/produto.dart';
+import '../models/medicamento.dart';
 
 class FormCompras extends StatefulWidget {
-  final Produto? produtoInicial;
+  final Medicamento? medicamentoInicial;
 
-  const FormCompras({super.key, this.produtoInicial});
+  const FormCompras({super.key, this.medicamentoInicial});
 
   @override
   State<FormCompras> createState() => _FormComprasState();
@@ -12,31 +12,48 @@ class FormCompras extends StatefulWidget {
 
 class _FormComprasState extends State<FormCompras> {
   late TextEditingController campoNome;
-  late TextEditingController campoValor;
+  late TextEditingController campoHorario;
+  late TextEditingController campoQuantidade;
 
   @override
   void initState() {
     super.initState();
     campoNome = TextEditingController(
-        text: widget.produtoInicial != null ? widget.produtoInicial!.nome : '');
-    campoValor = TextEditingController(
-        text: widget.produtoInicial != null ? widget.produtoInicial!.valor.toString() : '');
+      text:
+          widget.medicamentoInicial != null
+              ? widget.medicamentoInicial!.nome
+              : '',
+    );
+    campoHorario = TextEditingController(
+      text:
+          widget.medicamentoInicial != null
+              ? widget.medicamentoInicial!.horario
+              : '',
+    );
+    campoQuantidade = TextEditingController(
+      text:
+          widget.medicamentoInicial != null
+              ? widget.medicamentoInicial!.quantidade.toString()
+              : '',
+    );
   }
 
   @override
   void dispose() {
     campoNome.dispose();
-    campoValor.dispose();
+    campoHorario.dispose();
+    campoQuantidade.dispose();
     super.dispose();
   }
 
-  void _salvarProduto() {
+  void _salvarMedicamento() {
     final String nome = campoNome.text;
-    final double? valor = double.tryParse(campoValor.text);
+    final String horario = campoHorario.text;
+    final int? quantidade = int.tryParse(campoQuantidade.text);
 
-    if (nome.isNotEmpty && valor != null) {
-      final produto = Produto(nome, valor);
-      Navigator.pop(context, produto);
+    if (nome.isNotEmpty && horario.isNotEmpty && quantidade != null) {
+      final medicamento = Medicamento(nome, horario, quantidade);
+      Navigator.pop(context, medicamento);
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(content: Text("Preencha todos os campos corretamente")),
@@ -53,24 +70,34 @@ class _FormComprasState extends State<FormCompras> {
           child: TextField(
             controller: campoNome,
             decoration: const InputDecoration(
-              labelText: 'Nome do Produto',
-              hintText: "Escreva o nome do produto...",
+              labelText: 'Nome do Medicamento',
+              hintText: "Escreva o nome do medicamento...",
             ),
           ),
         ),
         Padding(
           padding: const EdgeInsets.all(8.0),
           child: TextField(
-            controller: campoValor,
+            controller: campoHorario,
             decoration: const InputDecoration(
-              labelText: 'Valor do Produto',
-              hintText: "Escreva o valor do produto...",
+              labelText: 'Horário do Medicamento',
+              hintText: "Escreva o horário do medicamento...",
+            ),
+          ),
+        ),
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: TextField(
+            controller: campoQuantidade,
+            decoration: const InputDecoration(
+              labelText: 'Quantidade de Medicamento',
+              hintText: "Escreva a quantidade de medicamento...",
             ),
             keyboardType: TextInputType.numberWithOptions(decimal: true),
           ),
         ),
         ElevatedButton(
-          onPressed: _salvarProduto,
+          onPressed: _salvarMedicamento,
           child: const Text('SALVAR'),
         ),
       ],
