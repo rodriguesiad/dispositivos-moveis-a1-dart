@@ -16,7 +16,7 @@ class CampoBusca extends StatelessWidget {
       padding: const EdgeInsets.all(8.0),
       child: TextField(
         decoration: const InputDecoration(
-          labelText: 'Buscar produto',
+          labelText: 'Buscar medicamento',
           prefixIcon: Icon(Icons.search),
           border: OutlineInputBorder(),
         ),

@@ -1,6 +1,6 @@
 import 'package:aula/models/medicamento.dart';
 import 'package:flutter/material.dart';
-import '../widgets/form_compras.dart';
+import '../widgets/form_medicamento.dart';
 
 class FormularioPage extends StatelessWidget {
   final Medicamento? medicamentoExistente;

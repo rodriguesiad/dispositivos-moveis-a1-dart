@@ -20,7 +20,7 @@ class ItemListMedicamentos extends StatelessWidget {
         leading: const Icon(Icons.medication),
         title: Text(medicamento.nome),
         subtitle: Text(
-          'Horário: ${medicamento.horario} - Quantidade ${medicamento.quantidade.toStringAsFixed(2)}',
+          'Horário: ${medicamento.horario} - Quantidade ${medicamento.quantidade}',
         ),
         trailing: Row(
           mainAxisSize: MainAxisSize.min,

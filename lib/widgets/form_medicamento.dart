@@ -33,7 +33,7 @@ class _FormComprasState extends State<FormCompras> {
     campoQuantidade = TextEditingController(
       text:
           widget.medicamentoInicial != null
-              ? widget.medicamentoInicial!.quantidade.toString()
+              ? widget.medicamentoInicial!.quantidade
               : '',
     );
   }
@@ -49,10 +49,12 @@ class _FormComprasState extends State<FormCompras> {
   void _salvarMedicamento() {
     final String nome = campoNome.text;
     final String horario = campoHorario.text;
-    final int? quantidade = int.tryParse(campoQuantidade.text);
+    final String quantidade = campoQuantidade.text;
 
-    if (nome.isNotEmpty && horario.isNotEmpty && quantidade != null) {
-      final medicamento = Medicamento(nome, horario, quantidade);
+    if (nome.isNotEmpty && horario.isNotEmpty && quantidade.isNotEmpty) {
+      final String id = widget.medicamentoInicial?.id ?? '';
+      final medicamento = Medicamento(id, nome, horario, quantidade);
+
       Navigator.pop(context, medicamento);
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
