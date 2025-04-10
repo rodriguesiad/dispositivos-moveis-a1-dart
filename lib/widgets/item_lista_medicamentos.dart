@@ -17,7 +17,7 @@ class ItemListMedicamentos extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
       child: ListTile(
-        leading: const Icon(Icons.shopping_cart),
+        leading: const Icon(Icons.medication),
         title: Text(medicamento.nome),
         subtitle: Text(
           'Horário: ${medicamento.horario} - Quantidade ${medicamento.quantidade.toStringAsFixed(2)}',
